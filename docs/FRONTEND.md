@@ -7,4 +7,3 @@ O assistente flutuante é secundário e expõe seu contexto. Sua busca local ret
 Uma camada de diálogo por vez. Escape fecha, o foco volta ao disparador e a rolagem do fundo é contida. Teclado, toque, viewport baixa, 1440/1024/768/390/320px e movimento reduzido fazem parte da revisão. Evite script e estilo inline. Formulários POST usam CSRF e views fazem autorização no servidor.
 
 As referências técnicas são as skills `design-operacional`, `frontend-templates`, `frontend-css-design` e `frontend-js-dom` do DJANGO_LANDPAGE, consultadas na implantação inicial. Não há dependência runtime daquele repositório.
-

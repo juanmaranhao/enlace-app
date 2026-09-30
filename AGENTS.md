@@ -10,4 +10,3 @@ A especificação base está em `docs/spec-central-projetos-v0.2.md`; o estado r
 - Arquitetura do produto: `agentic_core` sem Django; apps Django em `apps/`; frontend do domínio no app dono; tokens compartilhados em `base_static/global/`.
 - O shell operacional do DJANGO_LANDPAGE é referência versionada. Módulos de marketing e domínio do template não pertencem ao Enlace.
 - Antes de declarar uma função pronta, valide fluxo, segurança, testes e o estado visual desktop/mobile. Não apresente dados sintéticos como atividade real.
-

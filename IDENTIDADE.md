@@ -7,4 +7,3 @@ A identidade comunica estrutura e conexão sem desenhar uma rede de pontos em to
 Telas de operação usam superfícies claras, texto azul de alto contraste, bordas discretas e terracota como acento de ação ou seleção. Estados semânticos precisam de texto e forma próprios; a cor sozinha não informa condição. Descrições extensas ficam recolhidas, com estados, nomes e próximo gesto sempre visíveis.
 
 Modos: carteira, dashboard, mapa, execuções e análises = **Operar**; fonte/contrato aberto = **Ler**. A versão de frontend exige revisão visual real desktop e mobile; a aprovação da logo não aprova automaticamente as telas.
-

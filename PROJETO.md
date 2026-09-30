@@ -9,4 +9,3 @@ O trabalho dominante é **Operar** na carteira, dashboard, mapa e análises; a f
 O produto responde com a informação efetivamente descoberta. Arquivo presente é arquitetura declarada, não prova de invocação. Ausência de evento pode significar conector indisponível. O assistente localiza capacidades e fontes; avaliação Jev e conversa livre exigem suas conexões próprias.
 
 O destino inicial é local. Credenciais ficam no `.env` do Enlace, separado dos apps. A especificação completa e os critérios AC-01 a AC-42 permanecem em `docs/spec-central-projetos-v0.2.md`; `docs/ROADMAP.md` indica o que já foi validado.
-

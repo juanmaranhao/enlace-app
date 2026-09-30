@@ -8,4 +8,3 @@ staticfiles/
 *.log
 .local/
 *.sqlite3*
-

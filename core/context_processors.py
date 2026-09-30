@@ -8,4 +8,3 @@ def brand(request):
     projects = Project.objects.accessible(request.user).filter(active=True)
     return {'site_nome':'Enlace','jev_configured':settings.JEV_CONFIGURED,'text_configured':settings.TEXT_CONFIGURED,
             'versao':settings.VERSAO,'sidebar_projects':projects[:8],'first_setup':settings.DEBUG and not get_user_model().objects.exists()}
-

@@ -13,4 +13,3 @@ urlpatterns = [
     path("", include("apps.arquitetura.urls")),
     path("", include("apps.assistente.urls")),
 ]
-

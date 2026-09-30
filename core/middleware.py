@@ -15,4 +15,3 @@ class LocalCSPMiddleware:
         response["X-Content-Type-Options"] = "nosniff"
         response["Cache-Control"] = "no-store"
         return response
-

@@ -16,4 +16,3 @@ O status aqui deve mudar apenas com evidência de execução/teste. Identidade a
 Entrega local v0.1.0 em 30/09/2026: 31 testes, check e pip check aprovados; capturas e limitações em QA-v0.1.md. O banco de uso começa vazio para o usuário criar seu acesso. A base do piloto é separada.
 
 Prioridades seguintes: validar a integração MCP no host escolhido; instrumentar um ponto real de produto com eventos; testar qualidade do Jev por critérios reais; parser de sequência explícita/condições e trace visual; diff de snapshots; plano de instalação/remapeamento e persistência de eventos; executores de produção por contrato. Não há atividade real dos apps inferida das fontes.
-
