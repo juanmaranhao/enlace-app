@@ -1,0 +1,44 @@
+body.enlace { margin:0; font-family:var(--font-sans); background:var(--en-canvas); }
+.enlace [hidden] { display:none !important; }
+.enlace .el-segment .is-active { background:var(--en-surface); box-shadow:0 1px 4px var(--en-tone-5); }
+.enlace a { color:inherit; text-decoration:none; }
+.enlace button,.enlace summary,.enlace .el-navbutton { cursor:pointer; }
+.enlace .el-icon { width:16px; height:16px; display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.enlace .el-app { min-height:100dvh; border:0; border-radius:0; overflow:visible; grid-template-columns:210px minmax(0,1fr); }
+.enlace .el-sidebar { position:sticky; top:0; height:100dvh; overflow-y:auto; }
+.enlace .el-brand img { border-radius:9px; flex-shrink:0; }
+.enlace .el-main { max-width:1450px; width:100%; margin:auto; padding-bottom:110px; }
+.enlace .el-navbutton span:last-child { min-width:0; overflow-wrap:anywhere; }
+.enlace .el-accountdetails { margin-top:auto; }
+.enlace .el-accountdetails summary { list-style:none; }
+.enlace .el-accountdetails .el-textbutton { margin:8px 6px; }
+.enlace .el-tab.is-active { color:var(--en-ink); border-bottom-color:var(--en-accent); }
+.enlace input,.enlace select,.enlace textarea { font:inherit; color:var(--en-ink); }
+.enlace .el-formlabel input,.enlace .el-formlabel textarea,.enlace .el-formlabel select { display:block; margin-top:7px; width:100%; border:1px solid var(--en-line); border-radius:8px; padding:10px 12px; background:var(--en-surface); }
+.enlace .el-formlabel { margin-bottom:18px; }
+.enlace .el-iconbutton,.enlace .el-button,.enlace .el-textbutton,.enlace .el-node { cursor:pointer; }
+.enlace .el-search .el-iconbutton { border:0; width:30px; }
+.enlace .el-message { border:1px solid var(--en-line); background:var(--en-blue); padding:12px 15px; margin-bottom:16px; border-radius:9px; font-size:13px; }
+.enlace .el-message.error { background:var(--en-soft); }
+.enlace .errorlist { color:var(--en-warm-text,var(--en-ink)); font-size:12px; padding-left:18px; }
+.enlace dialog.el-dialog { padding:0; position:fixed; inset:0; margin:auto; width:calc(100% - 32px); max-height:calc(100dvh - 40px); overflow:auto; color:var(--en-ink); }
+.enlace dialog::backdrop { background:var(--en-backdrop,var(--en-shadow)); backdrop-filter:blur(3px); }
+.enlace .el-dialogheader { position:sticky; top:0; background:var(--en-surface); z-index:1; }
+.enlace .el-dialogfoot { position:sticky; bottom:0; }
+html.is-dialog-open,body.is-dialog-open { overflow:hidden; }
+.enlace .el-empty { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; min-height:320px; text-align:center; padding:25px; }
+.enlace .el-empty p { max-width:400px; color:var(--en-muted); font-size:13px; }
+.enlace .el-empty-small { min-height:100px; }
+.enlace .el-auth { min-height:100dvh; display:grid; place-items:center; }
+body.enlace.el-auth { display:grid; place-items:center; padding:30px 16px; }
+.enlace .el-authcard { width:100%; max-width:430px; background:var(--en-surface); border:1px solid var(--en-line); padding:30px; border-radius:15px; }
+.enlace .el-authcard h1 { font-size:24px; margin-top:28px; }
+.enlace .el-authcard form { margin-top:24px; }
+.enlace .el-authcard .el-button-primary { width:100%; }
+.enlace button:focus-visible,.enlace a:focus-visible,.enlace input:focus-visible,.enlace select:focus-visible,.enlace summary:focus-visible,.enlace textarea:focus-visible { outline:2px solid var(--en-accent); outline-offset:3px; }
+.enlace .el-mobileaccount { display:none; position:relative; }
+.enlace .el-accountmenu { position:absolute; right:0; top:100%; z-index:35; min-width:165px; display:grid; gap:12px; padding:16px; border:1px solid var(--en-line); border-radius:10px; background:var(--en-surface); box-shadow:0 12px 30px #25345318; }
+@media(max-width:620px) { .enlace .el-mobileaccount { display:block; margin:0; border:0; padding:0; } .enlace .el-mobileaccount summary { display:flex; align-items:center; justify-content:center; width:44px; height:44px; padding:0; } .enlace .el-mobileaccount summary::marker { content:''; } }
+@media(max-width:850px) { .enlace .el-app { grid-template-columns:170px minmax(0,1fr); } }
+@media(max-width:620px) { .enlace .el-app { display:block; } .enlace .el-sidebar { height:auto; overflow:visible; z-index:5; } .enlace .el-accountdetails { display:none; } .enlace .el-topbar { position:relative; } .enlace .el-main { padding-bottom:105px; } .enlace .el-navbutton { min-height:44px; } .enlace .el-navbutton span { display:none; } .enlace .el-authcard { padding:25px; } }
+@media(pointer:coarse) { .enlace button,.enlace .el-button,.enlace .el-tab,.enlace .el-navbutton { min-height:44px; } .enlace input,.enlace textarea,.enlace select { font-size:16px; } }

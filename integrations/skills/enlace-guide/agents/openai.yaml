@@ -1,0 +1,4 @@
+interface:
+  display_name: "Guia Enlace"
+  short_description: "Projetos e fluxos com fontes na central Enlace"
+  default_prompt: "Use $enlace-guide para encontrar o fluxo adequado ao meu objetivo e explicar suas fontes."

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320">
+    <g transform="translate(48 48) scale(1.4)"><rect width="160" height="160" rx="37" fill="#F0EBE3"/>
+      <path d="M48 39H119V57H68V72H106V89H68V106H119V124H48Z" fill="#253453"/>
+      <rect x="38" y="39" width="10" height="85" fill="#D76D50"/></g>
+    <text x="320" y="158" font-family="Segoe UI, Arial, sans-serif" font-size="94" font-weight="700" letter-spacing="-3" fill="#253453">Enlace</text>
+    <text x="324" y="207" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#65718A">Central de projetos e fluxos</text>
+  </svg>

@@ -1,0 +1,36 @@
+:root {
+  --en-ink: #253453;
+  --en-muted: #697386;
+  --en-accent: #D76D50;
+  --en-soft: #F4E8E2;
+  --en-canvas: #F7F5F1;
+  --en-surface: #FFFFFF;
+  --en-side: #F0EEE9;
+  --en-line: #E3E4E7;
+  --en-blue: #E8EDF4;
+  --en-green: #426653;
+  --en-green-bg: #EAF1EC;
+  --en-shadow: 0 22px 70px #25345321;
+  --en-backdrop: #25345321;
+  --en-warm-text: #874C3A;
+  --en-tone-1: #2534530D;
+  --en-tone-2: #D76D5019;
+  --en-tone-3: #25345307;
+  --en-tone-4: #25345321;
+  --en-tone-5: #25345320;
+  --en-tone-6: #25345309;
+  --en-tone-7: #874C3A;
+  --en-tone-8: #F0EBE3;
+  --en-tone-9: #D8B3A6;
+  --en-tone-10: #F0AC92;
+  --en-tone-11: #B5BECE;
+  --en-tone-12: #FCFBF9;
+  --en-tone-13: #D6DBE3;
+  --en-tone-14: #BBC3CF;
+  --en-tone-15: #F7F7F5;
+  --en-tone-16: #A3ACBC;
+  --en-tone-17: #344568;
+  --en-tone-18: #E8C7BB;
+  --font-sans: "Segoe UI",system-ui,sans-serif;
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+}

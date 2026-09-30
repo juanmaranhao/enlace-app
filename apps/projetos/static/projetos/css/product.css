@@ -1,0 +1,9 @@
+.enlace .el-formpanel { max-width:760px; }
+.enlace .el-previewplan { padding:18px; margin-bottom:20px; border:1px solid var(--en-line); border-radius:9px; background:var(--en-canvas); }
+.enlace .el-previewplan h2 { margin-bottom:8px; }
+.enlace .el-flowrow p,.enlace .el-flowrow h3 { overflow-wrap:anywhere; }
+.enlace .el-flowrow > div { min-width:0; }
+.enlace .el-cardtop > div { min-width:0; }
+.enlace .el-compact .el-projectcard { grid-template-columns:minmax(170px,1fr) 210px 110px; }
+@media(max-width:950px) { .enlace .el-compact .el-projectcard { grid-template-columns:minmax(120px,1fr) 170px; } }
+@media(max-width:620px) { .enlace .el-compact .el-projectcard { grid-template-columns:1fr; } }

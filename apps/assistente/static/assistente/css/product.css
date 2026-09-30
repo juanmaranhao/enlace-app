@@ -1,0 +1,9 @@
+.enlace .el-floating { position:fixed; bottom:20px; right:24px; z-index:30; }
+.enlace .el-chatmessages { padding-bottom:10px; }
+.enlace .el-chatproject .el-row { justify-content:flex-start; flex-wrap:wrap; }
+.enlace .el-chatinput { position:sticky; bottom:0; background:var(--en-surface); }
+.enlace .el-chatcontext { padding:8px 12px; background:var(--en-blue); border-radius:8px; font-size:12px; }
+.enlace .el-sourceselect { max-height:250px; overflow:auto; padding:8px; overflow-wrap:anywhere; }
+.enlace .el-checkline { display:flex; align-items:flex-start; gap:8px; font-size:12px; margin:10px 0; }
+.enlace .el-checkline input { flex-shrink:0; }
+@media(max-width:620px) { .enlace .el-floating { right:16px; bottom:16px; } }

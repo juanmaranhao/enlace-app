@@ -1,0 +1,425 @@
+<div id="enlace-visual">
+  <style>
+    #enlace-visual { color-scheme: light; --en-ink:#253453; --en-muted:#697386; --en-accent:#D76D50; --en-soft:#F4E8E2; --en-canvas:#F7F5F1; --en-surface:#FFFFFF; --en-side:#F0EEE9; --en-line:#E3E4E7; --en-blue:#E8EDF4; --en-green:#426653; --en-green-bg:#EAF1EC; --en-shadow:0 22px 70px #25345321; font:14px/1.5 'Segoe UI',system-ui,sans-serif; color:var(--en-ink); }
+    #enlace-visual * { box-sizing:border-box; }
+    #enlace-visual button,#enlace-visual input,#enlace-visual select { font:inherit; }
+    #enlace-visual button { color:inherit; }
+    #enlace-visual [hidden] { display:none !important; }
+    #enlace-visual h1,#enlace-visual h2,#enlace-visual h3,#enlace-visual p { margin:0; }
+    #enlace-visual h1 { font-size:28px; font-weight:600; letter-spacing:-1px; line-height:1.2; }
+    #enlace-visual h2 { font-size:19px; font-weight:600; letter-spacing:-.4px; }
+    #enlace-visual h3 { font-size:15px; font-weight:600; }
+    #enlace-visual svg { flex-shrink:0; }
+    #enlace-visual .el-app { display:grid; grid-template-columns:190px minmax(0,1fr); min-height:700px; background:var(--en-canvas); position:relative; isolation:isolate; border:1px solid var(--en-line); border-radius:16px; overflow:clip; }
+    #enlace-visual .el-sidebar { background:var(--en-side); padding:24px 16px 18px; display:flex; flex-direction:column; gap:30px; border-right:1px solid var(--en-line); }
+    #enlace-visual .el-brand { display:flex; align-items:center; gap:9px; padding:0 6px; font-size:22px; font-weight:600; letter-spacing:-.8px; }
+    #enlace-visual .el-logo { width:34px; height:34px; border-radius:9px; background:#F0EBE3; position:relative; overflow:hidden; flex-shrink:0; }
+    #enlace-visual .el-logo::before { content:''; position:absolute; left:24%; top:24%; width:6%; height:53%; background:var(--en-accent); }
+    #enlace-visual .el-logo::after { content:''; position:absolute; inset:24% 26% 23% 30%; background:var(--en-ink); clip-path:polygon(0 0,100% 0,100% 21%,28% 21%,28% 39%,82% 39%,82% 59%,28% 59%,28% 79%,100% 79%,100% 100%,0 100%); }
+    #enlace-visual .el-eyebrow { color:var(--en-muted); font-size:11px; letter-spacing:1.3px; text-transform:uppercase; font-weight:600; }
+    #enlace-visual .el-nav { display:grid; gap:4px; }
+    #enlace-visual .el-nav .el-eyebrow { margin:0 10px 8px; }
+    #enlace-visual .el-navbutton { border:0; padding:10px 12px; background:transparent; border-radius:8px; display:flex; gap:10px; align-items:center; text-align:left; color:var(--en-muted); min-height:42px; }
+    #enlace-visual .el-navbutton.is-current { background:var(--en-surface); color:var(--en-ink); box-shadow:0 1px 3px #25345309; }
+    #enlace-visual .el-navbutton:hover { background:var(--en-blue); color:var(--en-ink); }
+    #enlace-visual .el-shortprojects { display:grid; gap:5px; }
+    #enlace-visual .el-shortprojects .el-navbutton { font-size:12px; min-height:36px; gap:9px; }
+    #enlace-visual .el-smallmark { width:21px; height:21px; border-radius:5px; background:var(--en-blue); display:grid; place-items:center; font-size:10px; color:var(--en-ink); }
+    #enlace-visual .el-account { margin-top:auto; display:flex; align-items:center; gap:9px; padding:14px 6px 0; border-top:1px solid var(--en-line); }
+    #enlace-visual .el-avatar { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--en-ink); color:var(--en-surface); font-size:12px; }
+    #enlace-visual .el-account strong { display:block; font-size:12px; font-weight:500; }
+    #enlace-visual .el-account small { display:block; font-size:11px; color:var(--en-muted); }
+    #enlace-visual .el-workspace { min-width:0; }
+    #enlace-visual .el-topbar { display:flex; gap:14px; justify-content:space-between; align-items:center; min-height:59px; padding:0 28px; border-bottom:1px solid var(--en-line); font-size:12px; background:var(--en-surface); }
+    #enlace-visual .el-breadcrumb { color:var(--en-muted); display:flex; align-items:center; gap:10px; }
+    #enlace-visual .el-breadcrumb strong { color:var(--en-ink); font-weight:500; }
+    #enlace-visual .el-preview { color:var(--en-muted); display:flex; align-items:center; gap:7px; font-size:11px; white-space:nowrap; }
+    #enlace-visual .el-preview::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--en-accent); }
+    #enlace-visual .el-main { padding:30px 28px 88px; }
+    #enlace-visual .el-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:24px; }
+    #enlace-visual .el-heading .el-eyebrow { margin-bottom:8px; }
+    #enlace-visual .el-subtitle { color:var(--en-muted); margin-top:8px; font-size:13px; }
+    #enlace-visual .el-button { display:inline-flex; gap:8px; align-items:center; justify-content:center; border:1px solid var(--en-line); background:var(--en-surface); border-radius:8px; padding:9px 13px; min-height:38px; white-space:nowrap; font-size:12px; font-weight:500; }
+    #enlace-visual .el-button:hover { background:var(--en-blue); }
+    #enlace-visual .el-button-primary { background:var(--en-ink); color:var(--en-surface); border-color:var(--en-ink); }
+    #enlace-visual .el-button-primary:hover { background:#344568; }
+    #enlace-visual .el-iconbutton { border:1px solid var(--en-line); background:var(--en-surface); width:36px; height:36px; border-radius:8px; display:grid; place-items:center; }
+    #enlace-visual .el-iconbutton:hover { background:var(--en-blue); }
+    #enlace-visual .el-toolbar { display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    #enlace-visual .el-search { display:flex; align-items:center; gap:9px; border:1px solid var(--en-line); background:var(--en-surface); border-radius:9px; padding:0 12px; max-width:340px; width:100%; }
+    #enlace-visual .el-search input { border:0; background:transparent; min-width:0; width:100%; color:var(--en-ink); height:38px; font-size:12px; }
+    #enlace-visual input::placeholder { color:var(--en-muted); }
+    #enlace-visual .el-caption { color:var(--en-muted); font-size:12px; }
+    #enlace-visual .el-projectgrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+    #enlace-visual .el-projectcard { background:var(--en-surface); border:1px solid var(--en-line); border-radius:13px; padding:22px; position:relative; transition:border-color .15s,transform .15s; }
+    #enlace-visual .el-projectcard:hover { border-color:#B5BECE; transform:translateY(-2px); }
+    #enlace-visual .el-cardtop { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+    #enlace-visual .el-cardtop > div,#enlace-visual .el-heading > div { min-width:0; }
+    #enlace-visual .el-cardtop h3,#enlace-visual h1 { overflow-wrap:anywhere; }
+    #enlace-visual .el-projectmark { width:42px; height:42px; border-radius:11px; display:grid; place-items:center; background:var(--en-blue); color:var(--en-ink); font-size:17px; font-weight:600; }
+    #enlace-visual .el-projectcard h3 { font-size:16px; }
+    #enlace-visual .el-projectcard .el-caption { margin-top:2px; font-size:11px; }
+    #enlace-visual .el-cardtop .el-iconbutton { margin-left:auto; border:0; width:30px; height:30px; flex-shrink:0; }
+    #enlace-visual .el-projectstates { display:grid; gap:9px; }
+    #enlace-visual .el-state { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:12px; }
+    #enlace-visual .el-state > span:first-child { display:flex; align-items:center; gap:7px; color:var(--en-muted); }
+    #enlace-visual .el-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; border-radius:5px; padding:3px 7px; background:var(--en-blue); color:var(--en-ink); white-space:nowrap; }
+    #enlace-visual .el-badge-soft { background:var(--en-canvas); color:var(--en-muted); }
+    #enlace-visual .el-badge-warm { background:var(--en-soft); color:#874C3A; }
+    #enlace-visual .el-cardbottom { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--en-line); margin-top:18px; padding-top:14px; gap:12px; }
+    #enlace-visual .el-textbutton { border:0; background:transparent; padding:3px 0; font-size:12px; display:flex; align-items:center; gap:7px; min-height:28px; }
+    #enlace-visual .el-textbutton:hover { color:var(--en-accent); }
+    #enlace-visual .el-tag { font-size:11px; color:var(--en-muted); }
+    #enlace-visual .el-compact .el-projectgrid { display:block; background:var(--en-surface); border:1px solid var(--en-line); border-radius:12px; overflow:hidden; }
+    #enlace-visual .el-compact .el-projectcard { display:grid; grid-template-columns:minmax(160px,1fr) 190px 94px; gap:16px; align-items:center; border:0; border-radius:0; padding:20px; border-bottom:1px solid var(--en-line); }
+    #enlace-visual .el-compact .el-projectcard:last-child { border-bottom:0; }
+    #enlace-visual .el-compact .el-projectcard:hover { transform:none; background:#FCFBF9; }
+    #enlace-visual .el-compact .el-cardtop { margin:0; }
+    #enlace-visual .el-compact .el-cardtop .el-iconbutton { display:none; }
+    #enlace-visual .el-compact .el-projectmark { width:32px; height:32px; border-radius:8px; font-size:13px; }
+    #enlace-visual .el-compact .el-projectcard h3 { font-size:14px; }
+    #enlace-visual .el-compact .el-cardbottom { margin:0; padding:0; border:0; }
+    #enlace-visual .el-compact .el-cardbottom .el-tag { display:none; }
+    #enlace-visual .el-bottomhint { margin-top:23px; display:flex; align-items:center; gap:8px; color:var(--en-muted); font-size:11px; }
+    #enlace-visual .el-tabs { display:flex; gap:22px; border-bottom:1px solid var(--en-line); margin-bottom:24px; }
+    #enlace-visual .el-tab { background:transparent; border:0; border-bottom:2px solid transparent; padding:10px 0 12px; font-size:12px; color:var(--en-muted); display:flex; align-items:center; gap:7px; }
+    #enlace-visual .el-tab[aria-pressed=true] { color:var(--en-ink); border-bottom-color:var(--en-accent); }
+    #enlace-visual .el-evidencegrid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:22px; }
+    #enlace-visual .el-evidence { background:var(--en-surface); border:1px solid var(--en-line); border-radius:12px; padding:20px; }
+    #enlace-visual .el-evidence .el-row { margin-bottom:16px; }
+    #enlace-visual .el-evidence h3 { font-size:14px; }
+    #enlace-visual .el-evidence .el-evidencestate { font-size:22px; font-weight:500; letter-spacing:-.6px; margin-bottom:6px; }
+    #enlace-visual .el-row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    #enlace-visual .el-panel { border:1px solid var(--en-line); background:var(--en-surface); border-radius:12px; padding:20px; }
+    #enlace-visual .el-flowrow { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid var(--en-line); }
+    #enlace-visual .el-flowrow:last-child { border-bottom:0; }
+    #enlace-visual .el-flowrow .el-smallmark { width:30px; height:30px; font-size:12px; }
+    #enlace-visual .el-flowrow .el-textbutton { margin-left:auto; }
+    #enlace-visual .el-viewcontrols { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    #enlace-visual .el-segment { display:inline-flex; gap:2px; padding:3px; background:var(--en-side); border:1px solid var(--en-line); border-radius:8px; }
+    #enlace-visual .el-segment button { border:0; border-radius:5px; padding:6px 10px; background:transparent; color:var(--en-muted); font-size:11px; }
+    #enlace-visual .el-segment button[aria-pressed=true] { background:var(--en-surface); color:var(--en-ink); box-shadow:0 1px 3px #2534530D; }
+    #enlace-visual .el-map { background:var(--en-surface); border:1px solid var(--en-line); border-radius:12px; position:relative; overflow:hidden; }
+    #enlace-visual .el-mapheader { padding:16px 18px; border-bottom:1px solid var(--en-line); display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    #enlace-visual .el-mapheader h3 { font-size:13px; }
+    #enlace-visual .el-mapheader .el-caption { font-size:10px; margin-top:2px; }
+    #enlace-visual .el-stage { min-height:260px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:40px 16px; align-items:center; padding:40px 22px 34px; position:relative; background:radial-gradient(var(--en-line) .7px,transparent .8px); background-size:18px 18px; }
+    #enlace-visual .el-stage.has-support { min-height:355px; grid-template-rows:1fr 1fr; }
+    #enlace-visual .el-node[data-node=rules],#enlace-visual .el-node[data-node=brand],#enlace-visual .el-node[data-node=tests] { background:#F7F7F5; border-style:dashed; }
+    #enlace-visual .el-links { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
+    #enlace-visual .el-links path { fill:none; stroke:#BBC3CF; stroke-width:1.4; }
+    #enlace-visual .el-links path.is-lit { stroke:var(--en-accent); stroke-width:2; }
+    #enlace-visual .el-links path.is-muted { opacity:.2; }
+    #enlace-visual .el-node { position:relative; z-index:1; background:var(--en-surface); border:1px solid #D6DBE3; border-radius:9px; padding:12px; text-align:left; box-shadow:0 3px 8px #25345307; min-width:0; width:100%; transition:opacity .15s; min-height:81px; }
+    #enlace-visual .el-node::before,#enlace-visual .el-node::after { content:''; position:absolute; width:6px; height:6px; background:var(--en-surface); border:1px solid #A3ACBC; border-radius:50%; top:50%; }
+    #enlace-visual .el-node::before { left:-4px; }
+    #enlace-visual .el-node::after { right:-4px; }
+    #enlace-visual .el-node.is-selected { border-color:var(--en-accent); box-shadow:0 0 0 3px #D76D5019; }
+    #enlace-visual .el-node.is-near { border-color:#D8B3A6; }
+    #enlace-visual .el-node.is-muted { opacity:.33; }
+    #enlace-visual .el-node small { display:flex; align-items:center; gap:6px; color:var(--en-muted); font-size:10px; margin-bottom:7px; }
+    #enlace-visual .el-node strong { display:block; font-size:12px; font-weight:500; overflow-wrap:anywhere; }
+    #enlace-visual .el-mapfooter { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 16px; border-top:1px solid var(--en-line); font-size:10px; color:var(--en-muted); }
+    #enlace-visual .el-legend { display:flex; align-items:center; gap:13px; flex-wrap:wrap; }
+    #enlace-visual .el-legend span { display:flex; align-items:center; gap:5px; }
+    #enlace-visual .el-legend b { display:block; width:16px; height:1px; background:#BBC3CF; }
+    #enlace-visual .el-legend .el-legend-selected { height:2px; background:var(--en-accent); }
+    #enlace-visual .el-mapempty { min-height:345px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; text-align:center; padding:28px; }
+    #enlace-visual .el-mapempty p { color:var(--en-muted); max-width:300px; font-size:12px; }
+    #enlace-visual details { font-size:12px; }
+    #enlace-visual summary { padding:13px 0; color:var(--en-ink); }
+    #enlace-visual .el-detailbody { padding:0 0 15px 13px; border-left:2px solid var(--en-line); margin-left:3px; color:var(--en-muted); }
+    #enlace-visual .el-sourceitem { display:flex; align-items:center; gap:8px; margin:8px 0; overflow-wrap:anywhere; }
+    #enlace-visual .el-code { background:var(--en-canvas); color:var(--en-muted); padding:12px; border-radius:7px; font:11px/1.8 Consolas,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }
+    #enlace-visual .el-floating { position:absolute; right:24px; bottom:20px; z-index:3; background:var(--en-ink); color:var(--en-surface); border:0; border-radius:14px; padding:11px 15px; display:flex; gap:9px; align-items:center; font-size:12px; box-shadow:0 6px 20px #25345320; }
+    #enlace-visual .el-floating i { color:#F0AC92; }
+    #enlace-visual .el-layer { position:absolute; inset:0; z-index:8; display:flex; align-items:flex-start; justify-content:center; padding:92px 24px 30px; background:#25345321; backdrop-filter:blur(3px); }
+    #enlace-visual .el-dialog { background:var(--en-surface); border:1px solid var(--en-line); border-radius:16px; width:100%; max-width:470px; box-shadow:var(--en-shadow); overflow:hidden; }
+    #enlace-visual .el-dialogheader { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:22px 24px 16px; }
+    #enlace-visual .el-dialogheader h2 { font-size:20px; }
+    #enlace-visual .el-dialogheader .el-eyebrow { margin-bottom:5px; }
+    #enlace-visual .el-dialogcontent { padding:0 24px 23px; }
+    #enlace-visual .el-dialog .el-tabs { margin:0 24px 18px; gap:24px; }
+    #enlace-visual .el-dialogdescription { color:var(--en-muted); font-size:13px; line-height:1.7; margin-bottom:13px; }
+    #enlace-visual .el-dialogfoot { padding:14px 24px; background:var(--en-canvas); border-top:1px solid var(--en-line); display:flex; gap:8px; align-items:center; justify-content:space-between; }
+    #enlace-visual .el-steps { display:grid; gap:12px; padding:2px 0 12px; }
+    #enlace-visual .el-step { display:flex; align-items:flex-start; gap:10px; font-size:12px; }
+    #enlace-visual .el-step .el-smallmark { flex-shrink:0; }
+    #enlace-visual .el-step p { color:var(--en-muted); font-size:11px; margin-top:2px; }
+    #enlace-visual .el-chatdialog { max-width:410px; }
+    #enlace-visual .el-chatmessages { display:grid; gap:15px; padding:0 24px 20px; }
+    #enlace-visual .el-chatwelcome { padding:18px 0 14px; }
+    #enlace-visual .el-chatwelcome h3 { font-size:19px; letter-spacing:-.5px; }
+    #enlace-visual .el-chatwelcome p { color:var(--en-muted); font-size:12px; margin-top:8px; }
+    #enlace-visual .el-suggestions { display:flex; gap:8px; flex-wrap:wrap; }
+    #enlace-visual .el-suggestion { background:var(--en-canvas); border:1px solid var(--en-line); padding:9px 11px; border-radius:9px; text-align:left; font-size:11px; }
+    #enlace-visual .el-userbubble { justify-self:end; border-radius:12px 12px 3px 12px; padding:9px 13px; background:var(--en-blue); font-size:12px; max-width:90%; }
+    #enlace-visual .el-answer { font-size:12px; color:var(--en-muted); line-height:1.7; }
+    #enlace-visual .el-answer strong { color:var(--en-ink); font-weight:500; }
+    #enlace-visual .el-chatproject { background:var(--en-canvas); border:1px solid var(--en-line); padding:14px; border-radius:10px; display:grid; gap:9px; }
+    #enlace-visual .el-chatproject h3 { font-size:13px; }
+    #enlace-visual .el-chatproject p { color:var(--en-muted); font-size:11px; }
+    #enlace-visual .el-chatinput { display:flex; gap:8px; padding:16px 20px; border-top:1px solid var(--en-line); align-items:center; }
+    #enlace-visual .el-chatinput input { border:0; background:transparent; min-width:0; flex:1; font-size:12px; color:var(--en-ink); }
+    #enlace-visual .el-formlabel { display:block; font-size:12px; margin-bottom:7px; }
+    #enlace-visual .el-forminput { width:100%; border:1px solid var(--en-line); border-radius:8px; padding:10px 12px; color:var(--en-ink); background:var(--en-canvas); font-size:12px; }
+    #enlace-visual .el-folderlist { display:grid; gap:4px; margin:12px 0; }
+    #enlace-visual .el-folderlist button { background:transparent; border:0; border-radius:7px; display:flex; align-items:center; gap:9px; padding:9px; font-size:12px; text-align:left; }
+    #enlace-visual .el-folderlist button:hover { background:var(--en-blue); }
+    #enlace-visual .el-checkline { display:flex; gap:8px; align-items:center; font-size:12px; margin:10px 0; }
+    #enlace-visual .el-analysisitem { padding:18px 0; border-bottom:1px solid var(--en-line); display:flex; gap:12px; align-items:flex-start; }
+    #enlace-visual .el-analysisitem:last-child { border:0; }
+    #enlace-visual .el-analysisitem > i { color:var(--en-accent); margin-top:3px; }
+    #enlace-visual .el-analysisitem p { color:var(--en-muted); font-size:12px; margin-top:5px; }
+    #enlace-visual .el-analysisitem .el-caption { font-size:10px; margin-top:7px; }
+    #enlace-visual .el-toast { position:absolute; bottom:74px; left:50%; transform:translateX(-50%); z-index:10; background:var(--en-ink); color:var(--en-surface); padding:10px 16px; border-radius:8px; font-size:12px; max-width:85%; text-align:center; box-shadow:var(--en-shadow); }
+    #enlace-visual .el-selectedbar { display:flex; align-items:center; gap:12px; background:var(--en-soft); border:1px solid #E8C7BB; border-radius:9px; padding:10px 13px; margin-top:12px; font-size:12px; }
+    #enlace-visual .el-selectedbar .el-textbutton { margin-left:auto; }
+    @media (max-width:850px) {
+      #enlace-visual .el-app { grid-template-columns:160px minmax(0,1fr); }
+      #enlace-visual .el-sidebar { padding:22px 10px 16px; }
+      #enlace-visual .el-main { padding:26px 20px 86px; }
+      #enlace-visual .el-topbar { padding:0 20px; }
+      #enlace-visual .el-projectcard { padding:18px; }
+      #enlace-visual .el-compact .el-projectcard { grid-template-columns:minmax(120px,1fr) 165px; }
+      #enlace-visual .el-compact .el-cardbottom { grid-column:1 / -1; justify-content:flex-end; }
+      #enlace-visual .el-stage { grid-template-columns:repeat(2,minmax(0,1fr)); padding:26px; gap:38px 38px; min-height:310px; }
+      #enlace-visual .el-node[data-node=build] { grid-column:2; grid-row:2; }
+      #enlace-visual .el-node[data-node=review] { grid-column:1; grid-row:2; }
+      #enlace-visual .el-stage.has-support { min-height:480px; }
+      #enlace-visual .el-layer { padding-top:75px; }
+    }
+    @media (max-width:620px) {
+      #enlace-visual .el-app { display:block; min-height:700px; border-radius:12px; }
+      #enlace-visual .el-sidebar { border:0; border-bottom:1px solid var(--en-line); flex-direction:row; justify-content:space-between; align-items:center; padding:13px 16px; gap:12px; }
+      #enlace-visual .el-brand { font-size:19px; padding:0; }
+      #enlace-visual .el-logo { width:29px; height:29px; }
+      #enlace-visual .el-nav { display:flex; gap:4px; }
+      #enlace-visual .el-navbutton { padding:8px; min-height:38px; }
+      #enlace-visual .el-navbutton span,#enlace-visual .el-nav .el-eyebrow,#enlace-visual .el-shortprojects,#enlace-visual .el-account { display:none; }
+      #enlace-visual .el-topbar { padding:8px 16px; min-height:46px; font-size:11px; gap:5px 8px; flex-wrap:wrap; }
+      #enlace-visual .el-breadcrumb > span,#enlace-visual .el-breadcrumb > svg { display:none; }
+      #enlace-visual .el-preview { font-size:10px; }
+      #enlace-visual .el-main { padding:24px 16px 90px; }
+      #enlace-visual h1 { font-size:25px; }
+      #enlace-visual .el-heading { align-items:flex-start; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+      #enlace-visual .el-heading .el-button { min-height:40px; }
+      #enlace-visual .el-projectgrid { grid-template-columns:1fr; }
+      #enlace-visual .el-evidencegrid { grid-template-columns:1fr; }
+      #enlace-visual .el-toolbar { gap:8px; }
+      #enlace-visual .el-search { max-width:none; }
+      #enlace-visual .el-toolbar > .el-caption { display:none; }
+      #enlace-visual .el-compact .el-projectcard { grid-template-columns:1fr; gap:13px; }
+      #enlace-visual .el-compact .el-cardbottom { grid-column:auto; }
+      #enlace-visual .el-tabs { gap:18px; }
+      #enlace-visual .el-tab { font-size:11px; }
+      #enlace-visual .el-layer { padding:65px 10px 20px; backdrop-filter:blur(2px); }
+      #enlace-visual .el-dialogheader { padding:18px 18px 12px; }
+      #enlace-visual .el-dialogcontent { padding:0 18px 18px; }
+      #enlace-visual .el-dialog .el-tabs { margin-left:18px; margin-right:18px; }
+      #enlace-visual .el-dialogfoot { padding:12px 18px; flex-wrap:wrap; }
+      #enlace-visual .el-stage { grid-template-columns:1fr; gap:24px; padding:28px 24px; }
+      #enlace-visual .el-node[data-node=build],#enlace-visual .el-node[data-node=review] { grid-column:auto; grid-row:auto; }
+      #enlace-visual .el-node { padding:10px; }
+      #enlace-visual .el-node strong { font-size:11px; }
+      #enlace-visual .el-mapheader { padding:13px; }
+      #enlace-visual .el-mapheader > .el-badge { display:none; }
+      #enlace-visual .el-mapfooter { flex-wrap:wrap; }
+      #enlace-visual .el-selectedbar { flex-wrap:wrap; }
+      #enlace-visual .el-floating { right:16px; bottom:18px; }
+      #enlace-visual .el-chatmessages { padding-left:18px; padding-right:18px; }
+      #enlace-visual .el-dialog { border-radius:12px; }
+    }
+    @media (pointer:coarse) { #enlace-visual button { min-height:44px; } #enlace-visual input { font-size:16px !important; } }
+    @media (prefers-reduced-motion:reduce) { #enlace-visual * { transition:none !important; } }
+  </style>
+
+  <div class="viz-carousel" aria-label="Organização visual do Enlace" data-previous-label="Anterior" data-next-label="Próximo">
+    <section data-variant="Espaçoso" aria-label="Enlace com carteira em cards">
+      <div class="el-app" data-design="cards" aria-label="Painel Enlace">
+        <aside class="el-sidebar">
+          <div class="el-brand"><span class="el-logo" aria-hidden="true"></span>enlace</div>
+          <nav class="el-nav" aria-label="Navegação principal">
+            <p class="el-eyebrow">Workspace</p>
+            <button class="el-navbutton is-current cursor-interaction" data-screen="projects" aria-label="Projetos"><i data-lucide="layout-grid" aria-hidden="true"></i><span>Projetos</span></button>
+            <button class="el-navbutton cursor-interaction" data-screen="map" aria-label="Mapa de fluxos"><i data-lucide="workflow" aria-hidden="true"></i><span>Mapa de fluxos</span></button>
+            <button class="el-navbutton cursor-interaction" data-screen="analysis" aria-label="Análises"><i data-lucide="scan-line" aria-hidden="true"></i><span>Análises</span></button>
+          </nav>
+          <div class="el-shortprojects"><p class="el-eyebrow">Seus projetos</p><button class="el-navbutton cursor-interaction" data-project="landpage"><span class="el-smallmark">D</span>DJANGO_LANDPAGE</button><button class="el-navbutton cursor-interaction" data-project="licipub"><span class="el-smallmark">L</span>LICIPUB</button><button class="el-navbutton cursor-interaction" data-project="social"><span class="el-smallmark">S</span>SOCIAL_APP</button></div>
+          <div class="el-account"><span class="el-avatar">JM</span><div><strong>Juan Maranhão</strong><small>Workspace local</small></div></div>
+        </aside>
+        <div class="el-workspace"><header class="el-topbar"><div class="el-breadcrumb"><span>Workspace</span><i data-lucide="chevron-right" aria-hidden="true"></i><strong data-breadcrumb>Projetos</strong></div><span class="el-preview">Prévia · dados ilustrativos</span></header><main class="el-main"></main></div>
+        <button class="el-floating cursor-interaction" data-chat><i data-lucide="sparkles" aria-hidden="true"></i>Assistente</button>
+        <div class="el-layer" hidden><section class="el-dialog" role="dialog" aria-modal="true" aria-label="Detalhes"></section></div>
+        <div class="el-toast" role="status" hidden></div>
+      </div>
+    </section>
+    <section data-variant="Compacto" aria-label="Enlace com carteira em lista" hidden></section>
+  </div>
+
+  <script>
+  (() => {
+    const root = document.getElementById('enlace-visual');
+    const compact = root.querySelector('[data-variant="Compacto"]');
+    const copy = root.querySelector('.el-app').cloneNode(true);
+    copy.dataset.design = 'list'; copy.classList.add('el-compact'); compact.append(copy);
+    const projects = [
+      {id:'landpage',name:'DJANGO_LANDPAGE',letter:'D',folder:'WORKSPACE / DJANGO_LANDPAGE',purpose:'Sites e aplicações',flow:'Criar um site',tag:'Sites · frontend · Django'},
+      {id:'licipub',name:'LICIPUB',letter:'L',folder:'APPS / LICIPUB',purpose:'Documentos e contratações',flow:'Preparar um documento',tag:'Documentos · análise · Jev'},
+      {id:'social',name:'SOCIAL_APP',letter:'S',folder:'APPS / SOCIAL_APP',purpose:'Conteúdo e publicação',flow:'Criar uma publicação',tag:'Conteúdo · produção · revisão'},
+      {id:'enlace',name:'Enlace',letter:'E',folder:'APPS / ENLACE',purpose:'Arquitetura e observabilidade',flow:'Acompanhar um projeto',tag:'Projetos · fluxos · evidências'}
+    ];
+    const icon = name => `<i data-lucide="${name}" aria-hidden="true"></i>`;
+    const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const baseNodes = [
+      {id:'objective',kind:'Objetivo',name:'Definir o site',icon:'flag',summary:'Transforma a ideia em objetivo, público e critérios de entrega.',source:'PROJETO.md',detail:'Registra o tipo de site, as páginas necessárias, o público e as restrições antes da construção.'},
+      {id:'plan',kind:'Skill',name:'Planejar arquitetura',icon:'layers',summary:'Organiza as partes do app e as responsabilidades de cada módulo.',source:'.agents/skills/arquitetura-sistema/SKILL.md',detail:'Propõe limites entre módulos, modelo de dados e contratos de integração. Este caminho é ilustrativo nesta prévia.'},
+      {id:'build',kind:'Skill',name:'Construir interface',icon:'panels-top-left',summary:'Transforma a direção visual em telas e interações consistentes.',source:'.agents/skills/frontend-templates/SKILL.md',detail:'Coordena templates, estilos e interações. Consulte as regras de frontend associadas antes de mudar uma tela.'},
+      {id:'review',kind:'Etapa',name:'Revisar e entregar',icon:'circle-check',summary:'Verifica a entrega contra o objetivo e os critérios escolhidos.',source:'docs/agentica/FLUXOS.md',detail:'Inclui revisão visual e funcional. Ter uma regra de revisão não comprova que uma revisão foi executada.'},
+      {id:'rules',kind:'Regras',name:'AGENTS.md',icon:'shield-check',summary:'Define as instruções gerais para trabalhar neste projeto.',source:'AGENTS.md',detail:'Orienta o agente sobre leitura inicial, limites de atuação, organização e critérios de validação.'},
+      {id:'brand',kind:'Contrato',name:'Identidade visual',icon:'palette',summary:'Mantém cores, tipografia e linguagem visual coerentes.',source:'IDENTIDADE.md',detail:'A identidade é material de suporte da construção da interface; aparece separada do caminho principal.'},
+      {id:'tests',kind:'Verificação',name:'QA visual e funcional',icon:'clipboard-check',summary:'Especifica o que precisa ser verificado antes da entrega.',source:'docs/FRONTEND.md',detail:'Reúne critérios de responsividade, navegação por teclado, comportamento e acabamento visual.'}
+    ];
+    const edges = [['objective','plan'],['plan','build'],['build','review'],['rules','plan'],['brand','build'],['tests','review']];
+    let saved = window.openai?.widgetState;
+    if (saved?.privateContent) saved = saved.privateContent;
+    root.querySelectorAll('.el-app').forEach((app, index) => {
+      const key = index ? 'compact' : 'spacious';
+      const state = { screen:'projects', project:'landpage', view:'declared', selected:null, support:false, modal:null, inspectorTab:'element', query:'', chatQuestion:'', ...saved?.[key] };
+      state.modal = null;
+      let trigger = null, toastTimer = null;
+      const main = app.querySelector('.el-main'), layer = app.querySelector('.el-layer'), dialog = app.querySelector('.el-dialog');
+      const project = () => projects.find(p => p.id === state.project) || projects[0];
+      const nodes = () => baseNodes.map(n => n.id === 'objective' ? {...n,name:project().flow} : n);
+      function icons() { if (window.lucide) window.lucide.createIcons({attrs:{width:16,height:16,'stroke-width':1.6}}); }
+      function save() {
+        const states = {};
+        root.querySelectorAll('.el-app').forEach(a => { if (a.enlaceState) states[a.dataset.design === 'cards' ? 'spacious' : 'compact'] = {...a.enlaceState, modal:null}; });
+        window.openai?.setWidgetState?.({modelContent:{screen:state.screen,project:project().name,selectedElement:state.selected,visualVariant:app.dataset.design},privateContent:states}).catch(() => {});
+      }
+      app.enlaceState = state;
+      function tabs(active) {
+        return `<div class="el-tabs" aria-label="Áreas do projeto"><button class="el-tab cursor-interaction" data-screen="dashboard" aria-pressed="${active === 'dashboard'}">${icon('layout-dashboard')}Visão geral</button><button class="el-tab cursor-interaction" data-screen="map" aria-pressed="${active === 'map'}">${icon('workflow')}Mapa</button><button class="el-tab cursor-interaction" data-screen="analysis" aria-pressed="${active === 'analysis'}">${icon('scan-line')}Análise</button></div>`;
+      }
+      function projectHeading() {
+        return `<div class="el-heading"><div><p class="el-eyebrow">${escape(project().purpose)}</p><h1>${escape(project().name)}</h1></div><button class="el-button cursor-interaction" data-notice="A leitura do projeto será conectada na implementação.">${icon('refresh-cw')}Atualizar leitura</button></div>${tabs(state.screen)}`;
+      }
+      function cards() {
+        const filtered = projects.filter(p => `${p.name} ${p.purpose} ${p.tag}`.toLowerCase().includes(state.query.toLowerCase()));
+        return filtered.length ? filtered.map(p => `<article class="el-projectcard"><div class="el-cardtop"><span class="el-projectmark">${p.letter}</span><div><h3>${p.name}</h3><p class="el-caption">${p.purpose}</p></div><button class="el-iconbutton cursor-interaction" data-project="${p.id}" aria-label="Abrir ${p.name}">${icon('arrow-up-right')}</button></div><div class="el-projectstates"><div class="el-state"><span>${icon('layers')}Estrutura</span><span class="el-badge">Exemplo visual</span></div><div class="el-state"><span>${icon('activity')}Execução</span><span class="el-badge el-badge-soft">Não conectada</span></div></div><div class="el-cardbottom"><span class="el-tag">${p.letter === 'D' ? 'Sites e apps' : p.letter === 'L' ? 'Documentos' : p.letter === 'S' ? 'Conteúdo' : 'Governança'}</span><button class="el-textbutton cursor-interaction" data-project="${p.id}">Abrir projeto ${icon('arrow-right')}</button></div></article>`).join('') : '<p class="el-caption">Nenhum projeto com esse termo na prévia.</p>';
+      }
+      function portfolio() {
+        return `<div class="el-heading"><div><p class="el-eyebrow">Central de projetos</p><h1>Seu workspace, conectado.</h1><p class="el-subtitle">Encontre projetos. Entenda os caminhos.</p></div><button class="el-button el-button-primary cursor-interaction" data-connect>${icon('plus')}Vincular projeto</button></div><div class="el-toolbar"><label class="el-search">${icon('search')}<input type="search" aria-label="Buscar projetos" placeholder="Buscar por projeto ou objetivo" value="${escape(state.query)}"></label><span class="el-caption">${projects.length} projetos na prévia</span></div><div class="el-projectgrid">${cards()}</div><div class="el-bottomhint">${icon('folder-open')}Pastas, regras e fluxos em uma única central.</div>`;
+      }
+      function dashboard() {
+        return `${projectHeading()}<div class="el-evidencegrid"><section class="el-evidence"><div class="el-row"><h3>${icon('layers')} Arquitetura declarada</h3><span class="el-badge">Exemplo</span></div><div class="el-evidencestate">Estrutura do projeto</div><p class="el-caption">Skills, regras e contratos conectados.</p><button class="el-textbutton cursor-interaction" data-screen="map">Explorar mapa ${icon('arrow-right')}</button></section><section class="el-evidence"><div class="el-row"><h3>${icon('activity')} Execução observada</h3><span class="el-badge el-badge-soft">Sem conector</span></div><div class="el-evidencestate">Aguardando evidências</div><p class="el-caption">Quando, como e por que cada etapa foi acionada.</p><button class="el-textbutton cursor-interaction" data-screen="map" data-observed>Ver acompanhamento ${icon('arrow-right')}</button></section></div><section class="el-panel"><div class="el-row"><h3>Caminhos para este projeto</h3><span class="el-caption">Ilustrativos</span></div><div class="el-flowrow"><span class="el-smallmark">${icon('workflow')}</span><div><h3>${escape(project().flow)}</h3><p class="el-caption">Do objetivo à revisão</p></div><button class="el-textbutton cursor-interaction" data-screen="map">Ver fluxo ${icon('arrow-up-right')}</button></div><div class="el-flowrow"><span class="el-smallmark">${icon('scan-line')}</span><div><h3>Revisar a arquitetura</h3><p class="el-caption">Lacunas, dependências e pontos de atenção</p></div><button class="el-textbutton cursor-interaction" data-screen="analysis">Analisar ${icon('arrow-up-right')}</button></div></section><details><summary>Pasta e fontes do projeto</summary><div class="el-detailbody"><div class="el-sourceitem">${icon('folder')} ${escape(project().folder)}</div><p>Esta apresentação usa conteúdo ilustrativo; não é um inventário do projeto.</p></div></details>`;
+      }
+      function map() {
+        const graph = state.view === 'observed' ? `<div class="el-mapempty">${icon('unplug')}<h3>Conecte as evidências de execução</h3><p>O fluxo descrito nos arquivos aparece na arquitetura. As execuções reais entram aqui com origem e horário.</p><button class="el-button cursor-interaction" data-notice="Na implementação, esta ação abrirá os conectores disponíveis para o projeto.">${icon('plug')}Ver conectores</button></div>` : `<div class="el-stage${state.support ? ' has-support' : ''}"><svg class="el-links" aria-hidden="true"></svg>${nodes().filter((n,i)=>i<4 || state.support).map(n=>`<button class="el-node cursor-interaction" data-node="${n.id}" aria-label="Selecionar ${escape(n.name)}"><small>${icon(n.icon)}${n.kind}</small><strong>${escape(n.name)}</strong></button>`).join('')}</div>`;
+        const selected = nodes().find(n => n.id === state.selected);
+        return `${projectHeading()}<div class="el-viewcontrols"><div class="el-segment" aria-label="Origem das evidências"><button class="cursor-interaction" data-view="declared" aria-pressed="${state.view === 'declared'}">Arquitetura</button><button class="cursor-interaction" data-view="observed" aria-pressed="${state.view === 'observed'}">Execução</button></div>${state.view === 'declared' ? `<button class="el-textbutton cursor-interaction" data-support aria-pressed="${state.support}">${icon('folder-tree')}${state.support ? 'Ocultar apoio' : 'Mostrar apoio'}</button>` : '<span class="el-caption">Conector ainda não configurado</span>'}</div><section class="el-map"><div class="el-mapheader"><div><h3>${escape(project().flow)}</h3><p class="el-caption">${state.view === 'declared' ? 'Caminho principal e referências de apoio' : 'Atividade, duração e resultado por etapa'}</p></div><span class="el-badge el-badge-soft">Fluxo ilustrativo</span></div>${graph}<div class="el-mapfooter"><div class="el-legend"><span><b></b>Conexão</span><span><b class="el-legend-selected"></b>Seleção</span></div><button class="el-textbutton cursor-interaction" data-reset>${icon('focus')}Limpar seleção</button></div></section>${selected && state.view === 'declared' ? `<div class="el-selectedbar">${icon(selected.icon)}<strong>${escape(selected.name)}</strong><button class="el-textbutton cursor-interaction" data-inspect>Detalhes ${icon('arrow-up-right')}</button><button class="el-iconbutton cursor-interaction" data-chat aria-label="Perguntar ao assistente sobre ${escape(selected.name)}">${icon('sparkles')}</button></div>` : ''}<details><summary>Ver o fluxo como lista</summary><div class="el-detailbody">${nodes().slice(0,4).map(n => `<div class="el-sourceitem">${icon(n.icon)}<button class="el-textbutton cursor-interaction" data-node="${n.id}">${escape(n.name)}</button></div>`).join('')}</div></details>`;
+      }
+      function analysis() {
+        return `${projectHeading()}<div class="el-panel"><div class="el-row"><h3>O fluxo atende ao objetivo?</h3><span class="el-badge el-badge-soft">Jev · a configurar</span></div><div class="el-analysisitem">${icon('target')}<div><h3>${escape(project().flow)}</h3><p>A análise relaciona o objetivo às etapas, contratos e evidências do projeto.</p><button class="el-textbutton cursor-interaction" data-chat>Conversar sobre o objetivo ${icon('arrow-right')}</button></div></div><div class="el-analysisitem">${icon('git-branch')}<div><h3>Lacunas na arquitetura</h3><p>Etapas sem responsável, regras sem consumidor e dependências pouco claras.</p><details><summary>Como aparece uma recomendação</summary><div class="el-detailbody"><strong>Exemplo: revisão sem critério explícito.</strong><p>O analista mostrará a fonte, o impacto no objetivo e uma mudança sugerida. Hipóteses ficam separadas de fatos.</p></div></details></div></div><div class="el-analysisitem">${icon('timer')}<div><h3>Gargalos na execução</h3><p>Tempo por etapa, tentativas e falhas, quando houver registros conectados.</p><span class="el-caption">Sem evidências, não há diagnóstico de desempenho.</span></div></div><div class="el-row"><span class="el-caption">Nenhuma análise de IA foi executada.</span><button class="el-button el-button-primary cursor-interaction" data-chat>${icon('sparkles')}Definir análise</button></div></div>`;
+      }
+      function render() {
+        main.innerHTML = state.screen === 'projects' ? portfolio() : state.screen === 'dashboard' ? dashboard() : state.screen === 'map' ? map() : analysis();
+        app.querySelector('[data-breadcrumb]').textContent = state.screen === 'projects' ? 'Projetos' : project().name;
+        app.querySelectorAll('.el-navbutton[data-screen]').forEach(b=>b.classList.toggle('is-current',b.dataset.screen === (state.screen === 'dashboard' ? 'projects' : state.screen)));
+        icons(); requestAnimationFrame(draw);
+      }
+      function draw() {
+        const stage = main.querySelector('.el-stage'); if (!stage) return;
+        const svg = stage.querySelector('.el-links'), box = stage.getBoundingClientRect();
+        const bounds = {};
+        stage.querySelectorAll('[data-node]').forEach(b => { const r=b.getBoundingClientRect(); bounds[b.dataset.node]={x:r.left-box.left,y:r.top-box.top,w:r.width,h:r.height}; });
+        svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+        const near = new Set([state.selected]);
+        edges.forEach(([a,b])=>{if(a === state.selected || b === state.selected){near.add(a);near.add(b);}});
+        svg.innerHTML=edges.map(([a,b])=>{
+          const s=bounds[a], t=bounds[b]; if(!s || !t)return '';
+          const horizontal=Math.abs(s.y-t.y)<25;
+          const x1=horizontal ? t.x>s.x ? s.x+s.w : s.x : s.x+s.w/2, y1=horizontal ? s.y+s.h/2 : t.y>s.y ? s.y+s.h : s.y;
+          const x2=horizontal ? t.x>s.x ? t.x : t.x+t.w : t.x+t.w/2, y2=horizontal ? t.y+t.h/2 : t.y>s.y ? t.y : t.y+t.h;
+          const d=horizontal ? `M${x1},${y1} C${(x1+x2)/2},${y1} ${(x1+x2)/2},${y2} ${x2},${y2}` : `M${x1},${y1} C${x1},${(y1+y2)/2} ${x2},${(y1+y2)/2} ${x2},${y2}`;
+          const lit=a===state.selected || b===state.selected;
+          return `<path d="${d}" class="${state.selected ? lit ? 'is-lit' : 'is-muted' : ''}"/>`;
+        }).join('');
+        stage.querySelectorAll('[data-node]').forEach(b=>{b.classList.toggle('is-selected',b.dataset.node===state.selected);b.classList.toggle('is-near',!!state.selected&&near.has(b.dataset.node)&&b.dataset.node!==state.selected);b.classList.toggle('is-muted',!!state.selected&&!near.has(b.dataset.node));b.setAttribute('aria-pressed',String(b.dataset.node===state.selected));});
+      }
+      function close() { layer.hidden=true; state.modal=null; if(trigger?.isConnected)trigger.focus({preventScroll:true}); }
+      function open(type,button) {
+        if(button && !dialog.contains(button))trigger=button; state.modal=type; layer.hidden=false;
+        dialog.classList.toggle('el-chatdialog',type === 'chat');
+        renderDialog(); requestAnimationFrame(()=>{dialog.querySelector('[data-close]')?.focus({preventScroll:true});dialog.scrollIntoView({block:'nearest',behavior:'instant'});});
+      }
+      function renderDialog() {
+        if(state.modal === 'inspect') {
+          const n=nodes().find(n=>n.id===state.selected)||nodes()[0];
+          dialog.setAttribute('aria-label',n.name);
+          const content=state.inspectorTab === 'element' ? `<p class="el-dialogdescription">${n.summary}</p><div class="el-row"><span class="el-badge">${n.kind}</span><span class="el-caption">Declaração ilustrativa</span></div><details><summary>Ver descrição completa</summary><div class="el-detailbody">${n.detail}</div></details><details><summary>Pastas, regras e contratos</summary><div class="el-detailbody"><details><summary>${icon('folder')} Fonte do elemento</summary><div class="el-code">${escape(n.source)}\nExemplo de referência · conteúdo não lido nesta prévia.</div></details><details><summary>${icon('file-text')} Regras associadas</summary><div class="el-code">AGENTS.md\nIDENTIDADE.md\ndocs/FRONTEND.md</div></details></div></details>` : `<p class="el-dialogdescription">Este elemento participa do caminho “${escape(project().flow)}”. As referências de apoio ficam separadas das etapas.</p><div class="el-steps">${nodes().slice(0,4).map((node,i)=>`<div class="el-step"><span class="el-smallmark">${i+1}</span><div><strong>${escape(node.name)}</strong><p>${node.id===n.id ? 'Elemento selecionado' : node.kind}</p></div></div>`).join('')}</div><details><summary>Ver conexões e critérios</summary><div class="el-detailbody">${edges.filter(([a,b])=>a===n.id || b===n.id).map(([a,b])=>`<p>${escape(nodes().find(x=>x.id===a).name)} → ${escape(nodes().find(x=>x.id===b).name)}</p>`).join('')}<p>As conexões são exemplos visuais. A leitura real terá indicação da origem.</p></div></details>`;
+          dialog.innerHTML=`<div class="el-dialogheader"><div><p class="el-eyebrow">${n.kind}</p><h2>${escape(n.name)}</h2></div><button class="el-iconbutton cursor-interaction" data-close aria-label="Fechar detalhes">${icon('x')}</button></div><div class="el-tabs"><button class="el-tab cursor-interaction" data-inspecttab="element" aria-pressed="${state.inspectorTab === 'element'}">Elemento</button><button class="el-tab cursor-interaction" data-inspecttab="flow" aria-pressed="${state.inspectorTab === 'flow'}">Fluxo</button></div><div class="el-dialogcontent">${content}</div><div class="el-dialogfoot"><span class="el-caption">${icon('link')} Fonte rastreável</span><button class="el-button cursor-interaction" data-chat>${icon('sparkles')}Perguntar ao assistente</button></div>`;
+        } else if(state.modal === 'chat') {
+          dialog.setAttribute('aria-label','Assistente do Enlace');
+          const q=state.chatQuestion;
+          let suggested=projects[0]; if(/publica|post|social|conteúdo/i.test(q))suggested=projects[2]; else if(/documen|etp|contrata/i.test(q))suggested=projects[1];
+          const video=/video|vídeo/i.test(q);
+          const answer = video ? `<div class="el-answer">Uma busca real mostrará apenas projetos com capacidade de vídeo comprovada. <strong>Esta prévia não confirma um fluxo de vídeo.</strong></div><button class="el-button cursor-interaction" data-notice="O catálogo real será consultado após conectar os projetos.">${icon('search')}Procurar capacidades</button>` : `<div class="el-answer">${state.selected ? 'Podemos explorar as responsabilidades, as fontes e as conexões deste elemento.' : `O projeto <strong>${suggested.name}</strong> é o exemplo de caminho para esse objetivo.`}</div><div class="el-chatproject"><h3>${icon('workflow')} ${suggested.flow}</h3><p>Objetivo → planejamento → construção → revisão</p><button class="el-textbutton cursor-interaction" data-chatflow="${suggested.id}">Mostrar no mapa ${icon('arrow-up-right')}</button><details><summary>O que este caminho faz</summary><p>Organiza as etapas e os elementos de apoio para ${suggested.flow.toLowerCase()}. Na implementação, a resposta virá de fontes reais do projeto.</p></details></div><button class="el-button cursor-interaction" data-prepare>${icon('clipboard-list')}Preparar tarefa</button>`;
+          dialog.innerHTML=`<div class="el-dialogheader"><div><p class="el-eyebrow">${state.screen === 'projects' ? 'Todos os projetos' : escape(project().name)}</p><h2>Assistente Enlace</h2></div><button class="el-iconbutton cursor-interaction" data-close aria-label="Fechar assistente">${icon('x')}</button></div><div class="el-chatmessages">${q ? `<div class="el-userbubble">${escape(q)}</div>${answer}` : `<div class="el-chatwelcome"><h3>Qual caminho você procura?</h3><p>Projetos, fluxos e pontos de melhoria.</p></div><div class="el-suggestions"><button class="el-suggestion cursor-interaction" data-question="Como faço para criar um site?">${icon('panels-top-left')} Criar um site</button><button class="el-suggestion cursor-interaction" data-question="Como faço para criar vídeos?">${icon('video')} Criar vídeos</button><button class="el-suggestion cursor-interaction" data-question="Quero analisar este fluxo">${icon('scan-line')} Analisar um fluxo</button></div>`}<span class="el-caption">Conversa demonstrativa · nenhuma IA conectada</span></div><form class="el-chatinput"><input aria-label="Mensagem ao assistente" placeholder="Pergunte sobre seus projetos…" maxlength="400"><button class="el-iconbutton cursor-interaction" type="submit" aria-label="Enviar mensagem">${icon('arrow-up')}</button></form>`;
+        } else if(state.modal === 'connect') {
+          dialog.setAttribute('aria-label','Vincular projeto');
+          dialog.innerHTML=`<div class="el-dialogheader"><div><p class="el-eyebrow">Novo projeto</p><h2>Conectar uma pasta</h2></div><button class="el-iconbutton cursor-interaction" data-close aria-label="Fechar cadastro">${icon('x')}</button></div><div class="el-dialogcontent"><label class="el-formlabel">Pasta do projeto<input class="el-forminput" aria-label="Pasta do projeto" value="C:\\Users\\juanm\\OneDrive\\Desktop\\WORKSPACE" readonly></label><div class="el-folderlist">${projects.slice(0,3).map(p=>`<button class="cursor-interaction" data-folder="${p.id}">${icon('folder')} ${p.name} ${icon('chevron-right')}</button>`).join('')}</div><div class="el-checkline">${icon('shield-check')}Leitura de regras, skills e contratos</div><div class="el-checkline">${icon('lock-keyhole')}Credenciais e bancos ficam de fora</div><details><summary>Como funciona a conexão</summary><div class="el-detailbody">Escolher pasta → revisar o que foi detectado → ativar o acompanhamento. Esta tela apenas demonstra a seleção.</div></details></div><div class="el-dialogfoot"><span class="el-caption">Nenhuma pasta será lida nesta prévia.</span></div>`;
+        } else if(state.modal === 'prepare') {
+          dialog.setAttribute('aria-label','Preparar tarefa');
+          dialog.innerHTML=`<div class="el-dialogheader"><div><p class="el-eyebrow">Tarefa preparada · exemplo</p><h2>Criar um site</h2></div><button class="el-iconbutton cursor-interaction" data-close aria-label="Fechar tarefa">${icon('x')}</button></div><div class="el-dialogcontent"><p class="el-dialogdescription">Projeto sugerido: DJANGO_LANDPAGE. O objetivo e os critérios serão revisados antes de encaminhar a tarefa.</p><div class="el-steps"><div class="el-step"><span class="el-smallmark">1</span><div><strong>Definir o objetivo</strong><p>Tipo de site, público e páginas.</p></div></div><div class="el-step"><span class="el-smallmark">2</span><div><strong>Escolher o fluxo</strong><p>Arquitetura, frontend e revisão.</p></div></div><div class="el-step"><span class="el-smallmark">3</span><div><strong>Revisar o encaminhamento</strong><p>Executor, escopo e resultado esperado.</p></div></div></div></div><div class="el-dialogfoot"><span class="el-caption">Nenhuma tarefa será executada.</span><button class="el-button cursor-interaction" data-chat>Voltar à conversa</button></div>`;
+        }
+        icons();
+      }
+      function notice(message) { const toast=app.querySelector('.el-toast'); toast.textContent=message; toast.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{toast.hidden=true;},4000); }
+      app.addEventListener('click',event=>{
+        const b=event.target.closest('button');
+        if(!b) {if(event.target===layer)close();return;}
+        if(b.hasAttribute('data-close')){close();return;}
+        if(b.dataset.notice){notice(b.dataset.notice);return;}
+        if(b.dataset.screen){close();state.screen=b.dataset.screen;state.selected=null;if(b.hasAttribute('data-observed'))state.view='observed';render();save();return;}
+        if(b.dataset.project){close();state.project=b.dataset.project;state.screen='dashboard';state.selected=null;state.view='declared';render();save();return;}
+        if(b.dataset.view){state.view=b.dataset.view;state.selected=null;render();save();return;}
+        if(b.dataset.node){state.selected=b.dataset.node;state.inspectorTab='element';render();main.querySelector(`[data-node="${state.selected}"]`)?.focus({preventScroll:true});save();return;}
+        if(b.hasAttribute('data-support')){state.support=!state.support;render();save();return;}
+        if(b.hasAttribute('data-inspect')){open('inspect',b);return;}
+        if(b.dataset.inspecttab){state.inspectorTab=b.dataset.inspecttab;renderDialog();save();return;}
+        if(b.hasAttribute('data-chat')){open('chat',b);return;}
+        if(b.hasAttribute('data-connect')){open('connect',b);return;}
+        if(b.dataset.folder){notice(`${projects.find(p=>p.id===b.dataset.folder).name}: a detecção real será feita após a implementação.`);return;}
+        if(b.dataset.question){state.chatQuestion=b.dataset.question;renderDialog();save();return;}
+        if(b.dataset.chatflow){close();state.project=b.dataset.chatflow;state.screen='map';state.view='declared';state.selected='build';render();save();return;}
+        if(b.hasAttribute('data-prepare')){open('prepare',b);return;}
+        if(b.hasAttribute('data-reset')){state.selected=null;render();save();return;}
+      });
+      app.addEventListener('input',event=>{if(event.target.matches('[aria-label="Buscar projetos"]')){state.query=event.target.value;main.querySelector('.el-projectgrid').innerHTML=cards();icons();save();}});
+      app.addEventListener('submit',event=>{event.preventDefault();if(event.target.matches('.el-chatinput')){const value=event.target.querySelector('input').value.trim();if(value){state.chatQuestion=value;renderDialog();save();}}});
+      app.addEventListener('keydown',event=>{
+        if(layer.hidden)return;
+        if(event.key==='Escape'){event.preventDefault();close();}
+        if(event.key==='Tab'){
+          const items=[...dialog.querySelectorAll('button,input,summary')].filter(e=>e.getClientRects().length&&!e.disabled);
+          const first=items[0],last=items[items.length-1];
+          if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+          else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+        }
+      });
+      new ResizeObserver(draw).observe(main);
+      new MutationObserver(()=>{if(!app.closest('[data-variant]').hidden)requestAnimationFrame(draw);}).observe(app.closest('[data-variant]'),{attributes:true,attributeFilter:['hidden']});
+      render();
+      app.enlaceRestore = incoming => { if(!incoming)return; if(['projects','dashboard','map','analysis'].includes(incoming.screen))state.screen=incoming.screen; if(projects.some(p=>p.id===incoming.project))state.project=incoming.project; if(['declared','observed'].includes(incoming.view))state.view=incoming.view; state.query=String(incoming.query||''); state.selected=nodes().some(n=>n.id===incoming.selected)?incoming.selected:null; state.support=!!incoming.support; close(); render(); };
+      const design={radius:13};
+      if(window.Tweak){const tweak=new window.Tweak({container:app,onChange:()=>app.querySelectorAll('.el-projectcard').forEach(c=>c.style.borderRadius=app.dataset.design==='cards'?`${design.radius}px`:'0')});tweak.addSlider(design,'radius',{label:'Arredondamento dos cards',min:6,max:20,unit:'px'});}
+    });
+    window.addEventListener('openai:set_globals',event=>{
+      let incoming=event.detail?.globals?.widgetState; if(incoming?.privateContent)incoming=incoming.privateContent;
+      if(!incoming)return;
+      root.querySelectorAll('.el-app').forEach(app=>app.enlaceRestore?.(incoming[app.dataset.design==='cards'?'spacious':'compact']));
+    });
+  })();
+  </script>
+</div>

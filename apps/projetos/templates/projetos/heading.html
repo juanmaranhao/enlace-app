@@ -1,0 +1,1 @@
+{% load enlace %}<div class="el-heading"><div><p class="el-eyebrow">Projeto conectado</p><h1>{{ project.name }}</h1></div>{% if can_edit %}<form method="post" action="{% url 'update_inventory' project.pk %}">{% csrf_token %}<button class="el-button" type="submit">{% icon 'refresh' %}Atualizar leitura</button></form>{% endif %}</div>{% include 'projetos/tabs.html' %}

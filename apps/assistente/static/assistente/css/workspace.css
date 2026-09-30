@@ -1,0 +1,21 @@
+.enlace .el-floating { position:absolute; right:24px; bottom:20px; z-index:3; background:var(--en-ink); color:var(--en-surface); border:0; border-radius:14px; padding:11px 15px; display:flex; gap:9px; align-items:center; font-size:12px; box-shadow:0 6px 20px var(--en-tone-5); }
+.enlace .el-floating i { color:var(--en-tone-10); }
+.enlace .el-chatdialog { max-width:410px; }
+.enlace .el-chatmessages { display:grid; gap:15px; padding:0 24px 20px; }
+.enlace .el-chatwelcome { padding:18px 0 14px; }
+.enlace .el-chatwelcome h3 { font-size:19px; letter-spacing:-.5px; }
+.enlace .el-chatwelcome p { color:var(--en-muted); font-size:12px; margin-top:8px; }
+.enlace .el-suggestions { display:flex; gap:8px; flex-wrap:wrap; }
+.enlace .el-suggestion { background:var(--en-canvas); border:1px solid var(--en-line); padding:9px 11px; border-radius:9px; text-align:left; font-size:11px; }
+.enlace .el-userbubble { justify-self:end; border-radius:12px 12px 3px 12px; padding:9px 13px; background:var(--en-blue); font-size:12px; max-width:90%; }
+.enlace .el-answer { font-size:12px; color:var(--en-muted); line-height:1.7; }
+.enlace .el-answer strong { color:var(--en-ink); font-weight:500; }
+.enlace .el-chatproject { background:var(--en-canvas); border:1px solid var(--en-line); padding:14px; border-radius:10px; display:grid; gap:9px; }
+.enlace .el-chatproject h3 { font-size:13px; }
+.enlace .el-chatproject p { color:var(--en-muted); font-size:11px; }
+.enlace .el-chatinput { display:flex; gap:8px; padding:16px 20px; border-top:1px solid var(--en-line); align-items:center; }
+.enlace .el-chatinput input { border:0; background:transparent; min-width:0; flex:1; font-size:12px; color:var(--en-ink); }
+@media (max-width:620px) {
+.enlace .el-floating { right:16px; bottom:18px; }
+.enlace .el-chatmessages { padding-left:18px; padding-right:18px; }
+}
