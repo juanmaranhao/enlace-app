@@ -1,0 +1,13 @@
+{% extends 'base_painel.html' %}
+{% load static enlace %}
+{% block title %}Contrato do projeto{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'central/css/central.css' %}">{% endblock %}
+{% block conteudo %}
+<div class="central">
+  <header class="central-heading"><div><p class="central-eyebrow">Central / contrato do projeto</p><h1>{{ project.name }}</h1><p class="central-lead">Defina o contexto específico que acompanha cada tarefa deste projeto.</p></div><a class="el-button" href="{% url 'central_home' %}">Voltar à central</a></header>
+  <div class="central-form-layout">
+    <section class="central-panel" aria-labelledby="contract-title"><h2 id="contract-title">Contexto e limites</h2><form class="central-form pn-form" method="post" novalidate>{% csrf_token %}{% include 'central/_form_fields.html' %}<div class="central-form-actions"><button class="el-button el-button-primary" type="submit">Salvar contrato {% icon 'check' %}</button><a class="central-link" href="{% url 'central_home' %}">Cancelar</a></div></form></section>
+    <aside class="central-guidance"><div><p class="central-eyebrow">Comum + específico</p><h2>O projeto mantém suas particularidades.</h2></div><p>O conhecimento geral vem da central. Este contrato reúne o perfil de trabalho, as restrições e os critérios próprios do projeto.</p><p class="central-note">Uma nova versão do contrato não reescreve o contexto de tarefas existentes. A retomada precisa conferir eventuais mudanças.</p><div><h3>Pasta vinculada</h3><p>{{ project.root }}</p></div><a class="central-link" href="{% url 'central_brain' %}#detail-contracts">Entender os contratos →</a></aside>
+  </div>
+</div>
+{% endblock %}

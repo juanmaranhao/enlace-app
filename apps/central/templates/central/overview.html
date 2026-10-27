@@ -1,0 +1,20 @@
+{% extends 'base_painel.html' %}
+{% load static enlace %}
+{% block title %}Central de trabalho{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'central/css/central.css' %}">{% endblock %}
+{% block conteudo %}
+<div class="central">
+  <header class="central-heading"><div><p class="central-eyebrow">Enlace / central de trabalho</p><h1>Direção comum.<br>Trabalho por projeto.</h1><p class="central-lead">Organize o pedido, acompanhe as etapas e preserve o contexto para continuar.</p></div><a class="el-button el-button-primary" href="{% url 'central_task_new' %}">{% icon 'plus' %}Nova tarefa</a></header>
+  <section class="central-intro" aria-labelledby="intro-title"><div><h2 id="intro-title">Conheça o cérebro da central.</h2><p>Explore o caminho entre sua necessidade, a execução e as evidências da entrega.</p></div><a class="el-button" href="{% url 'central_brain' %}">{% icon 'workflow' %}Como funciona</a></section>
+  <section aria-labelledby="tasks-title">
+    <div class="central-section-title"><h2 id="tasks-title">Tarefas</h2><span>{{ tasks|length }} nesta visão</span></div>
+    {% if tasks %}<ul class="central-task-list">{% for task in tasks %}
+      <li class="central-task-row"><div><h3><a href="{% url 'central_task_detail' task.pk %}">{{ task.objective|truncatechars:160 }}</a></h3><div class="central-task-meta"><span>{{ task.project.name }}</span><span>{% include 'central/_workflow_label.html' with workflow=task.workflow %}</span><time datetime="{{ task.created_at|date:'c' }}">{{ task.created_at|date:'d/m/Y H:i' }}</time></div></div><div class="central-task-actions"><span class="central-label{% if task.status == 'paused' or task.status == 'blocked' %} central-label-warm{% endif %}">{{ task.get_status_display|default:task.status }}</span><a class="el-button" href="{% url 'central_task_detail' task.pk %}">Acompanhar {% icon 'arrow-right' %}</a></div></li>
+    {% endfor %}</ul>{% else %}<div class="central-empty"><span class="central-symbol">{% icon 'workflow' %}</span><h2>Uma tarefa começa com um objetivo.</h2><p>Escolha um projeto e descreva o resultado esperado. A central mantém o plano e o histórico do trabalho.</p><a class="el-button el-button-primary" href="{% url 'central_task_new' %}">{% icon 'plus' %}Criar primeira tarefa</a></div>{% endif %}
+  </section>
+  <section class="central-projects" aria-labelledby="contracts-title"><div class="central-section-title"><h2 id="contracts-title">Projetos e contratos</h2><span>{{ contracts|length }} versões registradas</span></div>
+    {% for project in projects %}<article class="central-project-row"><div><strong>{{ project.name }}</strong><p>{{ project.root }}</p></div>{% if project.can_edit %}<a class="el-button" href="{% url 'central_contract' project.pk %}">{% icon 'file' %}Contrato do projeto</a>{% else %}<span class="central-label central-label-muted">Acesso em leitura</span>{% endif %}</article>{% empty %}<div class="central-note">Vincule um projeto à carteira para definir seu contrato de trabalho. <a class="central-link" href="{% url 'register' %}">Vincular projeto →</a></div>{% endfor %}
+  </section>
+  <p class="central-note central-context">A central registra contexto e acompanhamento. A execução permanece vinculada ao projeto escolhido e às permissões do ambiente.</p>
+</div>
+{% endblock %}
