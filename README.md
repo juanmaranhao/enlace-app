@@ -1,6 +1,14 @@
 # Enlace
 
-Central local de projetos com carteira, arquitetura declarada, mapa interativo, fontes versionadas, busca de capacidades e análise sob demanda. A interface segue a direção Compacto aprovada; a especificação completa está em `docs/spec-central-projetos-v0.2.md` e o estado entregue em `docs/ROADMAP.md`.
+Central local de projetos com carteira, arquitetura declarada, mapa interativo, fontes versionadas, busca de capacidades e análise sob demanda. A v0.2 acrescenta contratos, tarefas com contexto fixado, sete etapas, observação Git e consultas contextuais ao Codex. A interface segue a direção Compacto aprovada; a especificação base está em `docs/spec-central-projetos-v0.2.md` e o estado entregue em [docs/ROADMAP.md](docs/ROADMAP.md).
+
+## Central de trabalho
+
+Abra [Central](http://127.0.0.1:8766/central/) para preparar e acompanhar tarefas de cada projeto. O desenho para consulta e apresentação fica em [Como funciona](http://127.0.0.1:8766/central/como-funciona/). O guia operacional está em [docs/HARNESS-CENTRAL.md](docs/HARNESS-CENTRAL.md).
+
+O Enlace concentra conhecimento comum e coordenação; regras específicas e arquivos permanecem nos projetos. As skills de domínio são referências por nome, sem migração ou instalação global automática. O SQLite de uso é preservado pelas migrações que acrescentam as tabelas da central.
+
+A fila Codex produz pareceres sobre o contexto enviado, sem ferramentas de execução. Não implementa código nem executa testes. Checkpoints manuais, resultados técnicos e conferência humana possuem origens distintas; a aprovação da entrega não implica merge, deploy ou limpeza. A observação Git mantém a recomendação de preservar arquivos e worktrees.
 
 ## Primeiro acesso local
 
@@ -17,7 +25,7 @@ Abra http://127.0.0.1:8766/primeiro-acesso/ e crie seu próprio usuário e senha
 .\tools\local.ps1 -Action Stop
 ```
 
-O script lança servidor e dois workers em janelas ocultas. A parada confere caminho, comando, horário de criação e árvore dos processos próprios; preserva banco, projetos e histórico. Recibos e logs locais ficam em `.local/`, fora do Git. É um ambiente de desenvolvimento loopback, sem publicação ou serviço de inicialização automática do Windows.
+O script lança servidor e três workers em janelas ocultas: inventário, avaliações e consultas da central. A parada confere caminho, comando, horário de criação e árvore dos processos próprios; preserva banco, projetos e histórico. Recibos e logs locais ficam em `.local/`, fora do Git. É um ambiente de desenvolvimento loopback, sem publicação ou serviço de inicialização automática do Windows.
 
 Em um checkout novo, crie `.venv`, instale `requirements.txt`, copie `.env.example` para `.env` e defina uma `DJANGO_SECRET_KEY` aleatória. Não reutilize uma chave de outro projeto. Se o cache do pip travar no ambiente restrito do Codex, use `--isolated --no-cache-dir --keyring-provider disabled`.
 
@@ -43,7 +51,7 @@ OPENAI_TEXT_MODEL=
 
 `JEV_IA` permite avaliar critérios obrigatórios contra fontes selecionadas. O painel prepara o plano, mostra conteúdo, quantidade de chamadas e custo ainda desconhecido; o envio depende da autorização daquele plano. Mudança nas fontes, snapshot, acesso ou modelo bloqueia partes ainda não enviadas. Respostas recebidas ficam preservadas; interrupção incerta não provoca retry automático. As probabilidades são sinais experimentais, sem calibração de domínio e sem certificação de execução.
 
-A busca do chat funciona sem chave. Para conversa livre, configure também o provedor de texto e marque **Conversa IA** na mensagem. Ele recebe pergunta, excertos autorizados e até seis turnos da própria conversa. Jev julga critérios; o provedor de texto redige a conversa. Abrir páginas, mapas ou o chat não chama IA. Os testes e o piloto não enviaram chamadas pagas.
+A busca do chat funciona sem chave. Para conversa livre, configure também o provedor de texto e marque **Conversa IA** na mensagem. Ele recebe pergunta, excertos autorizados e até seis turnos da própria conversa. Jev julga critérios; o provedor de texto redige a conversa. Abrir páginas, mapas ou o chat não chama IA. O piloto da v0.1 não enviou chamadas pagas. A consulta Codex da central usa a autenticação da instalação Codex e pode consumir sua cota quando solicitada.
 
 ## Pacote portátil
 
@@ -51,8 +59,10 @@ A busca do chat funciona sem chave. Para conversa livre, configure também o pro
 - `integrations/enlace_client.py`: cliente e buffer opcional de eventos para integrar cada produto.
 - `integrations/mcp_server.py`: MCP stdio para consultar a central pelo Codex.
 - `integrations/skills/enlace-guide/`: skill de orientação com as mesmas fontes e IDs do painel.
+- `integrations/central_mcp.py`: MCP local de tarefas, limitado por operador e lista explícita de projetos.
+- `integrations/skills/enlace-central/`: skill para preparar e acompanhar trabalho com o contexto fixado.
 
-Instalação e limites em `docs/INTEGRACOES.md`. O pacote não foi instalado automaticamente nos projetos ou na configuração global do Codex. Arquivos encontrados são evidência de arquitetura declarada; eventos, tempos e acionamentos exigem integração explícita.
+Instalação e limites em [docs/INTEGRACOES.md](docs/INTEGRACOES.md). Os pacotes portáteis não instalam a si mesmos nos projetos ou na configuração global do Codex; o estado de instalação no host precisa ser conferido separadamente. Arquivos encontrados são evidência de arquitetura declarada; eventos, tempos e acionamentos exigem integração explícita.
 
 ## Verificação
 
@@ -63,6 +73,6 @@ Instalação e limites em `docs/INTEGRACOES.md`. O pacote não foi instalado aut
 .venv\Scripts\python.exe -m pip check
 ```
 
-O banco de testes é isolado e as credenciais dos provedores ficam desativadas. `tools/bootstrap_qa.py` prepara outro banco em `.local/qa.sqlite3`, com leitura do piloto; nunca substitui `db.sqlite3`. Evidências visuais e limites estão em `docs/QA-v0.1.md`.
+O banco de testes é isolado e as credenciais dos provedores ficam desativadas. `tools/bootstrap_qa.py` prepara outro banco em `.local/qa.sqlite3`, com leitura do piloto; nunca substitui `db.sqlite3`. Evidências da base estão em `docs/QA-v0.1.md`; a central passou por 106 testes e pilotos reais nos dois projetos, com resultados e limites em [docs/QA-CENTRAL-v0.2.md](docs/QA-CENTRAL-v0.2.md). As entregas dos pilotos aguardam aprovação do usuário.
 
 Fora do modo local, PostgreSQL via `DATABASE_URL`, HTTPS e configuração operacional própria são obrigatórios. Não há deploy incluído nesta entrega.

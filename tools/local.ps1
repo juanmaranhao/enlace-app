@@ -1,7 +1,15 @@
-param([ValidateSet('Start','Stop','Status')][string]$Action='Start')
+param(
+    [ValidateSet('Start','Stop','Status')][string]$Action='Start',
+    [string]$PythonExe='',
+    [string]$ConfigRoot='',
+    [string]$DataRoot='',
+    [ValidateRange(1024,65535)][int]$Port=8766
+)
 $ErrorActionPreference='Stop'
 $projectRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$pythonExe=Join-Path $projectRoot '.venv\Scripts\python.exe'
+$pythonExe=if ($PythonExe) { [IO.Path]::GetFullPath($PythonExe) } else { Join-Path $projectRoot '.venv\Scripts\python.exe' }
+if ($ConfigRoot) { $env:ENLACE_CONFIG_ROOT=[IO.Path]::GetFullPath($ConfigRoot) }
+if ($DataRoot) { $env:ENLACE_DATA_DIR=[IO.Path]::GetFullPath($DataRoot) }
 $manageFile=Join-Path $projectRoot 'manage.py'
 $localFolder=Join-Path $projectRoot '.local'
 $runtimeFile=Join-Path $localFolder 'runtime.json'
@@ -66,13 +74,13 @@ if (Test-Path -LiteralPath $runtimeFile) {
     $running=@($records | ForEach-Object { Get-OwnedProcess $_ }) | Where-Object { $_ }
     if ($running.Count -gt 0) { throw 'Há uma sessão registrada. Use -Action Status ou -Action Stop antes de iniciar novamente.' }
 }
-if (Get-NetTCPConnection -LocalPort 8766 -State Listen -ErrorAction SilentlyContinue) { throw 'A porta 8766 está ocupada. Nenhum processo foi alterado.' }
+if (Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue) { throw "A porta $Port está ocupada. Nenhum processo foi alterado." }
 New-Item -ItemType Directory -Path $localFolder -Force | Out-Null
 & $pythonExe $manageFile migrate --noinput
 if ($LASTEXITCODE -ne 0) { throw 'Migrações não concluídas. Serviços não iniciados.' }
 $started=@()
 try {
-    foreach ($service in @(@{name='server';args='runserver 127.0.0.1:8766 --noreload';command='runserver'},@{name='inventory';args='process_inventory';command='process_inventory'},@{name='analysis';args='process_assessments';command='process_assessments'})) {
+    foreach ($service in @(@{name='server';args="runserver 127.0.0.1:$Port --noreload";command='runserver'},@{name='inventory';args='process_inventory';command='process_inventory'},@{name='analysis';args='process_assessments';command='process_assessments'},@{name='central';args='process_central';command='process_central'})) {
         $process=Start-Process -FilePath $pythonExe -ArgumentList "`"$manageFile`" $($service.args)" -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $localFolder "$($service.name).out.log") -RedirectStandardError (Join-Path $localFolder "$($service.name).err.log") -PassThru
         $identity=Get-CimInstance Win32_Process -Filter "ProcessId = $($process.Id)"
         if (-not $identity) { throw "O serviço $($service.name) terminou antes da confirmação." }
@@ -81,7 +89,7 @@ try {
     }
     $healthy=$false
     for ($attempt=0;$attempt -lt 10;$attempt++) {
-        try { $health=Invoke-RestMethod 'http://127.0.0.1:8766/healthz/' -TimeoutSec 2; if ($health.status -eq 'ok') { $healthy=$true; break } } catch { }
+        try { $health=Invoke-RestMethod "http://127.0.0.1:$Port/healthz/" -TimeoutSec 2; if ($health.status -eq 'ok') { $healthy=$true; break } } catch { }
         Start-Sleep -Milliseconds 500
     }
     if (-not $healthy) { throw 'Servidor não confirmou saúde. Consulte .local/server.err.log.' }
@@ -90,10 +98,10 @@ try {
     # Cada filho carrega o mesmo comando no argv. Preservar também sua identidade.
     foreach ($record in $complete) {
         $identity=Get-CimInstance Win32_Process -Filter "ProcessId = $($record.pid)"
-        $record.command=if ($identity.CommandLine -like '*process_inventory*') {'process_inventory'} elseif ($identity.CommandLine -like '*process_assessments*') {'process_assessments'} else {'runserver'}
+        $record.command=if ($identity.CommandLine -like '*process_inventory*') {'process_inventory'} elseif ($identity.CommandLine -like '*process_assessments*') {'process_assessments'} elseif ($identity.CommandLine -like '*process_central*') {'process_central'} else {'runserver'}
     }
     $complete | ConvertTo-Json | Set-Content -LiteralPath $runtimeFile -Encoding utf8
-    Write-Output 'Enlace ativo em http://127.0.0.1:8766/. Primeiro acesso: /primeiro-acesso/.'
+    Write-Output "Enlace ativo em http://127.0.0.1:$Port/. Central: /central/; mapa: /central/como-funciona/."
 } catch {
     # Mantém o recibo para diagnóstico e parada segura; não mata processos sem verificar.
     throw

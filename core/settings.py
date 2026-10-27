@@ -1,12 +1,16 @@
 """Configuração local do Enlace; segredos vêm somente do .env desta instalação."""
+import os
 from pathlib import Path
 
 import dj_database_url
-from decouple import config
+from decouple import AutoConfig
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-VERSAO = 'v0.1.0'
+CONFIG_DIR = Path(os.environ.get('ENLACE_CONFIG_ROOT', BASE_DIR)).resolve()
+DATA_DIR = Path(os.environ.get('ENLACE_DATA_DIR', CONFIG_DIR)).resolve()
+config = AutoConfig(search_path=str(CONFIG_DIR))
+VERSAO = 'v0.2.0'
 SECRET_KEY = config("DJANGO_SECRET_KEY", default="unsafe-local-only-change-me")
 DEBUG = config("DJANGO_DEBUG", default=False, cast=bool)
 if not DEBUG and SECRET_KEY == 'unsafe-local-only-change-me':
@@ -16,7 +20,7 @@ ALLOWED_HOSTS = [host.strip() for host in config("DJANGO_ALLOWED_HOSTS", default
 INSTALLED_APPS = [
     "django.contrib.admin", "django.contrib.auth", "django.contrib.contenttypes",
     "django.contrib.sessions", "django.contrib.messages", "django.contrib.staticfiles",
-    "apps.projetos", "apps.arquitetura", "apps.assistente",
+    "apps.projetos", "apps.arquitetura", "apps.assistente", "apps.central",
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -46,8 +50,12 @@ database_url = config("DATABASE_URL", default="").strip()
 if not DEBUG and not database_url:
     raise RuntimeError("DATABASE_URL é obrigatório fora do modo local de desenvolvimento.")
 DATABASES = {"default": dj_database_url.parse(database_url) if database_url else {
-    "ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",
+    "ENGINE": "django.db.backends.sqlite3", "NAME": DATA_DIR / "db.sqlite3",
 }}
+if DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
+    # Os workers e a UI compartilham o banco local. Reserve a escrita ao entrar
+    # em atomic, evitando a promoção concorrente de transações de leitura.
+    DATABASES['default'].setdefault('OPTIONS', {}).update(timeout=20, transaction_mode='IMMEDIATE')
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -76,7 +84,9 @@ LOGIN_REDIRECT_URL = "carteira"
 LOGOUT_REDIRECT_URL = "login"
 
 configured_roots = config("ENLACE_ALLOWED_ROOTS", default="").strip()
-ENLACE_ALLOWED_ROOTS = [Path(part).resolve() for part in configured_roots.split(";") if part.strip()] if configured_roots else [BASE_DIR.parent.parent.resolve()]
+ENLACE_ALLOWED_ROOTS = [Path(part).resolve() for part in configured_roots.split(";") if part.strip()] if configured_roots else [CONFIG_DIR.parent.parent.resolve()]
+ENLACE_CODEX_EXECUTABLE = config('ENLACE_CODEX_EXECUTABLE', default='')
+ENLACE_CENTRAL_RUN_TIMEOUT = config('ENLACE_CENTRAL_RUN_TIMEOUT', default=180, cast=int)
 JEV_IA = config('JEV_IA', default='')
 JEV_API_URL = config('JEV_API_URL',default='https://api.typesafe.ai/v1/systemone')
 JEV_MODEL = config('JEV_MODEL',default='jev-1.13.0')
