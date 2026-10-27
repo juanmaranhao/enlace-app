@@ -122,3 +122,27 @@ ferramentas numa nova sessão; QA visual específico do formulário de conferên
 humana; executores automáticos de produto e limpeza. O conjunto completo dos
 critérios AC-01 a AC-42 da especificação original continua sem certificação
 integral. Esta entrega é uma central local, sem deploy de produção incluído.
+
+## Instalação local e continuidade
+
+A versão validada está no checkout habitual `APPS/ENLACE`, na branch
+`codex/central-harness`. A branch anterior `work/enlace-inicial` foi preservada.
+O servidor e os workers usam esse checkout; o MCP instalado aponta para seu
+`integrations/central_mcp.py`. O smoke foi repetido pela configuração instalada
+após a mudança de caminho, às 15:46:38 UTC, com sucesso.
+
+A cópia preservada dos recibos e capturas está em
+`.local/central-v0.2-evidence/`; os caminhos apresentados anteriormente descrevem
+seu local de geração na worktree de desenvolvimento. O manifesto
+`.local/central-runtime.json` registra código, PR, runtime, evidências e destino
+da worktree. A sessão temporária de QA foi revogada, sem mudar a senha do usuário.
+
+No checkout habitual, `./tools/local.ps1 -Action Status` consulta os processos;
+`-Action Stop` encerra somente os processos cuja identidade foi confirmada;
+`-Action Start` inicia a aplicação local em `http://127.0.0.1:8766/`.
+Não foi configurado início automático ao ligar o computador.
+
+O [PR 1](https://github.com/juanmaranhao/enlace-app/pull/1) permanece Draft para
+revisão. Sua base é a branch existente `work/enlace-inicial`, publicada sem
+alterar o commit original porque o remoto estava vazio. A worktree usada no
+desenvolvimento permanece preservada até a revisão; não houve merge ou limpeza.
